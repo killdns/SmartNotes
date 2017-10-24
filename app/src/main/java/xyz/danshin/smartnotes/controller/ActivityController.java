@@ -10,18 +10,31 @@ import xyz.danshin.smartnotes.Enums;
 /**
  * Класс контроллер для activity
  */
-public class ActivityController {
+public final class ActivityController {
 
+    /**
+     * Главное Activity приложения
+     */
     private static AppCompatActivity baseActivity;
 
+    /**
+     * Геттер главного Activity приложения
+     */
     public static AppCompatActivity getBaseActivity() {
         return baseActivity;
     }
 
+    /**
+     * Сеттер главного Activity приложения
+     */
     public static void setBaseActivity(AppCompatActivity baseActivity) {
         ActivityController.baseActivity = baseActivity;
     }
 
+    /**
+     * Запуск Activity создания заметки
+     * @param activity Activity, куда отправить результат
+     */
     public static void startNoteActivityAdd(AppCompatActivity activity) {
         NoteEditActivity_
                 .intent(activity)
@@ -29,6 +42,11 @@ public class ActivityController {
                 .startForResult(1);
     }
 
+    /**
+     * Запуск Activity изменения заметки
+     * @param id Id Заметки
+     * @param adapterPosition Позиция адаптера
+     */
     public static void startNoteActivityEdit(int id, int adapterPosition) {
         NoteEditActivity_
                 .intent(getBaseActivity())
@@ -37,6 +55,13 @@ public class ActivityController {
                 .adapterPosition(adapterPosition)
                 .startForResult(2);
     }
+
+    /**
+     * Запуск Activity просмотра заметки
+     * @param activity Activity, куда отправить результат
+     * @param id Id Заметки
+     * @param adapterPosition Позиция адаптера
+     */
     public static void startNoteActivityView(AppCompatActivity activity, int id, int adapterPosition) {
         NoteViewActivity_
                 .intent(activity)
