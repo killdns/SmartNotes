@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Умные заметки</string>
+    <string name="title_activity_main">Умные заметки</string>
+    <string name="title_activity_note">Просмотр заметки</string>
+    <string name="title_activity_note_view">Новая заметка</string>
+    <string name="title_activity_note_edit">Редактирование заметки</string>
+    <string name="action_settings">Настройки</string>
+    <string name="deleting">Удаление</string>
+    <string name="delete_selected_notes">Удалить выделенные заметки?</string>
+    <string name="delete_current_note">Удалить текущую заметку?</string>
+    <string name="note_title">Заголовок</string>
+    <string name="note_description">Описание</string>
+    <string name="save">Сохранить</string>
+    <string name="edit">Изменить</string>
+    <string name="delete">Удалить</string>
+    <string name="yes">Да</string>
+    <string name="no">Отмена</string>
+</resources>

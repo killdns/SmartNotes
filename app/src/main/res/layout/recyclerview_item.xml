@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tubb.smrv.SwipeHorizontalMenuLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:sml="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/sml"
+    android:layout_marginTop="1dp"
+    sml:sml_auto_open_percent="0.7"
+    sml:sml_scroller_duration="250">
+
+    <include android:id="@id/smContentView" layout="@layout/cardview_item"/>
+    <include android:id="@id/smMenuViewLeft" layout="@layout/swipe_menu_rv"/>
+
+</com.tubb.smrv.SwipeHorizontalMenuLayout>

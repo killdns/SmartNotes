@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">SmartNotes</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_note">View note</string>
+    <string name="title_activity_note_view">New note</string>
+    <string name="title_activity_note_edit">Edit note</string>
+    <string name="action_settings">Settings</string>
+    <string name="deleting">Deleting</string>
+    <string name="delete_selected_notes">Delete selected notes?</string>
+    <string name="delete_current_note">Delete current note?</string>
+    <string name="note_title">Title</string>
+    <string name="note_description">Description</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="yes">Yes</string>
+    <string name="no">Cancel</string>
+    <string name="question_sign">\?</string>
+</resources>

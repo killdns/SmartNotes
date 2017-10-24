@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorLightGrey">#e6e6e6</color>
+    <color name="colorTransparentLightGrey">#66e6e6e6</color>
+    <color name="delete_red">#a71010</color>
+    <color name="edit_orange">#e5b633</color>
+</resources>

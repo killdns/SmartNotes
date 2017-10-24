@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_view_note_edit_undo"
+        android:checkable="false"
+        android:icon="@drawable/ic_undo_24dp"
+        android:title="Undo"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bottom_view_note_edit_redo"
+        android:checkable="false"
+        android:icon="@drawable/ic_redo_24dp"
+        android:title="Redo"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bottom_view_note_edit_remove"
+        android:checkable="false"
+        android:icon="@drawable/ic_recycle_bin_24dp"
+        android:title="Remove"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/bottom_view_note_edit_save"
+        android:checkable="false"
+        android:icon="@drawable/ic_save_24dp"
+        android:title="Save"
+        android:visible="true"
+        app:showAsAction="always" />
+
+
+</menu>
