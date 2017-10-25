@@ -3,7 +3,6 @@ package xyz.danshin.smartnotes.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
-import android.util.Log;
 import android.view.View;
 
 import com.nononsenseapps.filepicker.Utils;
@@ -99,7 +98,7 @@ public class NoteViewActivity extends NoteEditActivity {
     @OnActivityResult(1)
     void onExportNotes(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            FileController.saveNotes(note, Utils.getSelectedFilesFromResult(data).get(0), this);
+            FileController.exportNote(note, Utils.getSelectedFilesFromResult(data).get(0), this);
         }
     }
     /**

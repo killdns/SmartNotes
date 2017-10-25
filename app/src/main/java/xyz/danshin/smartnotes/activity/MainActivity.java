@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
     @OnActivityResult(3)
     void onExportNotes(int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            FileController.saveNotes(NoteRepository.getSelectedNotes(), Utils.getSelectedFilesFromResult(data).get(0), this);
+            FileController.exportNotes(NoteRepository.getSelectedNotes(), Utils.getSelectedFilesFromResult(data).get(0), this);
         }
         actionMode.finish();
     }

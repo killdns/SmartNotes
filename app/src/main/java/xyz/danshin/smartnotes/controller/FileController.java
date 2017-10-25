@@ -26,10 +26,10 @@ public final class FileController {
      * @param path Родительский пусть
      * @param context Context
      */
-    public static void saveNotes(ArrayList<Note> notes, Uri path, Context context)
+    public static void exportNotes(ArrayList<Note> notes, Uri path, Context context)
     {
         for (Note note: notes) {
-            File file_s = new File(Utils.getFileForUri(path), note.getTitle() + ".txt");
+            File file_s = new File(Utils.getFileForUri(path), replaceSignChars(note.getTitle()) + ".txt");
             FileOutputStream stream;
             try {
                 stream = new FileOutputStream(file_s);
@@ -49,8 +49,8 @@ public final class FileController {
      * @param path Родительский пусть
      * @param context Контекст
      */
-    public static void saveNotes(Note note, Uri path, Context context) {
-        File file_s = new File(Utils.getFileForUri(path), note.getTitle() + ".txt");
+    public static void exportNote(Note note, Uri path, Context context) {
+        File file_s = new File(Utils.getFileForUri(path), replaceSignChars(note.getTitle()) + ".txt");
         FileOutputStream stream;
         try {
             stream = new FileOutputStream(file_s);
@@ -84,5 +84,15 @@ public final class FileController {
             }
         });
         alert.show();
+    }
+
+    /**
+     * Заменяет все знаки, отличние от алфавита и цифр на символ _
+     * @param str Входная строка
+     * @return Форматированная строка
+     */
+    private static String replaceSignChars(String str)
+    {
+        return str.replaceAll("\\W", "_");
     }
 }
