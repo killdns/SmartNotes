@@ -8,12 +8,20 @@
     <string name="deleting">Deleting</string>
     <string name="delete_selected_notes">Delete selected notes?</string>
     <string name="delete_current_note">Delete current note?</string>
+    <string name="export_error">Export error</string>
+    <string name="export_success">Selected notes successfully exported</string>
+    <string name="export_success_single">Note successfully exported</string>
+    <string name="note_save_error">Note title or description can\'t be empty</string>
     <string name="note_title">Title</string>
     <string name="note_description">Description</string>
+    <string name="error">Error</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="export">Export</string>
+    <string name="export2">@string/export</string>
     <string name="yes">Yes</string>
     <string name="no">Cancel</string>
+    <string name="ok">OK</string>
     <string name="question_sign">\?</string>
 </resources>

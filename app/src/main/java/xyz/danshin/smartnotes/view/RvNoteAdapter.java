@@ -48,11 +48,6 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
     }
 
     /**
-     * Формат даты-времени
-     */
-    DateFormat dateFormat =  new android.text.format.DateFormat();
-
-    /**
      * Конструктор
      *
      * @param listener Экземпляр класса, реализующий интерфейс IRvSelectedListener
@@ -80,10 +75,9 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
         viewholder.checkbox.setVisibility(selectableStatus && NoteRepository.get(i).isSelected() ? View.VISIBLE : View.GONE);
         viewholder.title.setText(NoteRepository.get(i).getTitle());
         viewholder.description.setText(NoteRepository.get(i).getDescription());
-        viewholder.date.setText(dateFormat.format("dd MMMM yyyy, HH:mm:ss", NoteRepository.get(i).getLastModifiedDate()));
+        viewholder.date.setText(NoteRepository.get(i).getFormatedLastModifiedDate());
         viewholder.checkbox.setChecked(NoteRepository.get(i).isSelected());
         viewholder.updateLayout();
-
     }
 
     /**

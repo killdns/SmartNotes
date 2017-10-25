@@ -9,11 +9,18 @@
     <string name="deleting">Удаление</string>
     <string name="delete_selected_notes">Удалить выделенные заметки?</string>
     <string name="delete_current_note">Удалить текущую заметку?</string>
+    <string name="export_error">Ошибка экспорта заметок</string>
+    <string name="export_success">Выбранные заметки успешно экспортированы</string>
+    <string name="export_success_single">Заметка успешно экспортирована</string>
+    <string name="note_save_error">Заголовок или описание заметки не может быть пустым</string>
     <string name="note_title">Заголовок</string>
     <string name="note_description">Описание</string>
+    <string name="error">Ошибка</string>
     <string name="save">Сохранить</string>
     <string name="edit">Изменить</string>
     <string name="delete">Удалить</string>
+    <string name="export">Экспортировать</string>
+    <string name="export2">Экспорт</string>
     <string name="yes">Да</string>
     <string name="no">Отмена</string>
 </resources>

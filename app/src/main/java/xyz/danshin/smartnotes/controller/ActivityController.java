@@ -1,7 +1,10 @@
 package xyz.danshin.smartnotes.controller;
 
-
+import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+
+import com.nononsenseapps.filepicker.FilePickerActivity;
 
 import xyz.danshin.smartnotes.activity.NoteViewActivity_;
 import xyz.danshin.smartnotes.activity.NoteEditActivity_;
@@ -69,5 +72,18 @@ public final class ActivityController {
                 .noteId(id)
                 .adapterPosition(adapterPosition)
                 .startForResult(2);
+    }
+
+    /**
+     * Запуск Activity экспорта заметок
+     * @param activity Activity
+     * @param requestCode requestCode
+     */
+    public static void startExportDirectoryPicker(AppCompatActivity activity, int requestCode) {
+        Intent i = new Intent(activity, FilePickerActivity.class);
+        i.putExtra(FilePickerActivity.EXTRA_ALLOW_CREATE_DIR, true);
+        i.putExtra(FilePickerActivity.EXTRA_MODE, FilePickerActivity.MODE_DIR);
+        i.putExtra(FilePickerActivity.EXTRA_START_PATH, Environment.getExternalStorageDirectory().getPath());
+        activity.startActivityForResult(i, requestCode);
     }
 }

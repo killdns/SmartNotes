@@ -1,5 +1,6 @@
 package xyz.danshin.smartnotes.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import xyz.danshin.smartnotes.R;
@@ -93,7 +95,7 @@ public class NoteEditActivity extends AppCompatActivity {
     /**
      * Экзмепляр заметки
      */
-    private Note note;
+    protected Note note;
 
     /**
      * Переменая, значение которой определяет была ли изменена заметка
@@ -177,7 +179,7 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
     /**
-     * Обновление текста TitleBar'a, в зависимости от вида взаимодействия с заметкой
+     * Обновление Toolbox'a, в зависимости от вида взаимодействия с заметкой
      */
     protected void updateTitleBar() {
         if (activityType == Enums.NoteActivityType.EDIT)
@@ -253,7 +255,11 @@ public class NoteEditActivity extends AppCompatActivity {
      * Метод, вызываемый при клике на кнопку сохранения
      */
     @Click(R.id.bottom_view_note_edit_save)
-    protected void OnClickSave() {
+    protected void onClickSave() {
+        if (!checkTextEditFields()) {
+            showSaveErrorAlert();
+            return;
+        }
         Intent intent = new Intent();
         Bundle bundle = new Bundle();
         if (activityType == Enums.NoteActivityType.CREATE) {
@@ -274,7 +280,7 @@ public class NoteEditActivity extends AppCompatActivity {
      * Метод, вызываемый при клике на кнопку удаления
      */
     @Click(R.id.bottom_view_note_edit_remove)
-    protected void OnClickRemove() {
+    protected void onClickRemove() {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(R.string.deleting);
         alert.setMessage(R.string.delete_current_note);
@@ -317,7 +323,7 @@ public class NoteEditActivity extends AppCompatActivity {
      * Метод, вызываемый при клике на кнопку отмены изменений
      */
     @Click(R.id.bottom_view_note_edit_undo)
-    protected void OnClickUndo() {
+    protected void onClickUndo() {
         noteTempData[Enums.NoteTempData.TITLE.ordinal()] = noteTitle.getText().toString();
         noteTempData[Enums.NoteTempData.DESCRIPTION.ordinal()] = noteDescription.getText().toString();
         noteTitle.setText(note.getTitle());
@@ -329,9 +335,34 @@ public class NoteEditActivity extends AppCompatActivity {
      * Метод, вызываемый при клике на кнопку повтора измеенений
      */
     @Click(R.id.bottom_view_note_edit_redo)
-    protected void OnClickRedo() {
+    protected void onClickRedo() {
         noteTitle.setText(noteTempData[Enums.NoteTempData.TITLE.ordinal()]);
         noteDescription.setText(noteTempData[Enums.NoteTempData.DESCRIPTION.ordinal()]);
         changeEnableUndoRedo(false);
+    }
+
+    /**
+     * Проверка на заполненность полей заметки
+     */
+    protected boolean checkTextEditFields()
+    {
+        return !(noteTitle.getText().length() == 0 || noteDescription.getText().length() == 0);
+    }
+
+    /**
+     * Сообщение об ошибке сохранения
+     */
+    private void showSaveErrorAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle(R.string.error);
+        alert.setMessage(R.string.note_save_error);
+        alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }
