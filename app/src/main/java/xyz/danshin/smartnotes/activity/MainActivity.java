@@ -8,13 +8,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.nononsenseapps.filepicker.Utils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.controller.ActivityController;
+import xyz.danshin.smartnotes.controller.FileController;
 import xyz.danshin.smartnotes.entity.Note;
 import xyz.danshin.smartnotes.repository.NoteRepository;
 import xyz.danshin.smartnotes.interfaces.IRvSelectedListener;
@@ -146,6 +148,16 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
     }
 
     /**
+     * Метод, вызываемый при экспорте заметок
+     */
+    @OnActivityResult(3)
+    void onExportNotes(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            FileController.saveNotes(NoteRepository.getSelectedNotes(), Utils.getSelectedFilesFromResult(data).get(0), this);
+        }
+        actionMode.finish();
+    }
+    /**
      * Метод, вызываемый при изменении состояния выделения элемента в recyclerView
      *
      * @param selectedItems Список выделенных элементов в recycleView с
@@ -203,9 +215,14 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
 
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             int id = item.getItemId();
-            if (id == R.id.action_delete) {
-                deleteActionAlert();
-                return true;
+            switch (id)
+            {
+                case R.id.action_delete:
+                    deleteActionAlert();
+                    return true;
+                case R.id.action_export:
+                    ActivityController.startExportDirectoryPicker(ActivityController.getBaseActivity(), 3);
+                    return true;
             }
             return false;
         }

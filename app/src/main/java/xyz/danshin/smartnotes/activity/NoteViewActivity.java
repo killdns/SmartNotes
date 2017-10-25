@@ -1,22 +1,31 @@
 package xyz.danshin.smartnotes.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
+import android.util.Log;
 import android.view.View;
+
+import com.nononsenseapps.filepicker.Utils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import xyz.danshin.smartnotes.Enums;
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.controller.ActivityController;
+import xyz.danshin.smartnotes.controller.FileController;
 
 /**
  * "Обрезанное" Activity просмотра заметок заметок
  */
 @EActivity
+@OptionsMenu(R.menu.menu_note_view)
 public class NoteViewActivity extends NoteEditActivity {
     /**
      * Кнопка редактирования заметки
@@ -77,6 +86,22 @@ public class NoteViewActivity extends NoteEditActivity {
         finish();
     }
 
+    /**
+     * Метод, обеспечивающий работу кнопки "Экспорт" в меню
+     */
+    @OptionsItem(R.id.menu_item_note_export)
+    void exportNote() {
+        ActivityController.startExportDirectoryPicker(this, 1);
+    }
+    /**
+     * Метод, вызываемый при экспорте заметок
+     */
+    @OnActivityResult(1)
+    void onExportNotes(int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            FileController.saveNotes(note, Utils.getSelectedFilesFromResult(data).get(0), this);
+        }
+    }
     /**
      * Метод, вызываемый при клике на кнопку удаления
      */

@@ -1,5 +1,7 @@
 package xyz.danshin.smartnotes.entity;
 
+import android.text.format.DateFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -34,6 +36,11 @@ public class Note implements Serializable, Comparable<Note> {
      * Состояние выделения заметки
      */
     private boolean isSelected = false;
+
+    /**
+     * Формат даты-времени
+     */
+    private DateFormat dateFormat =  new android.text.format.DateFormat();
 
     /**
      * Конструктор класса заметки
@@ -92,6 +99,12 @@ public class Note implements Serializable, Comparable<Note> {
     public Date getLastModifiedDate() { return this.lastModifiedDate; }
 
     /**
+     * Геттер для даты последненго изменения заметки в читабельном виде
+     * @return
+     */
+    public String getFormatedLastModifiedDate() { return dateFormat.format("dd MMMM yyyy, HH:mm:ss", this.lastModifiedDate).toString(); }
+
+    /**
      * Сеттер для даты последненго изменения заметки
      * @return
      */
@@ -147,7 +160,6 @@ public class Note implements Serializable, Comparable<Note> {
         return  n1.compareTo(n2);
     }
 
-
     /**
      * Метод преобразования в текстовое представление
      * @return Текстовое представление
@@ -161,6 +173,18 @@ public class Note implements Serializable, Comparable<Note> {
              .append("Description = "  + this.getDescription() + ", ")
              .append("Date = "  + this.getLastModifiedDate() + ".")
              .toString();
+    }
 
+    /**
+     * Метод преобразования в текстовое представление для экспорта
+     * @return Текстовое представление для экспорта
+     */
+    public String toExportString()
+    {
+        return new StringBuilder()
+                .append("Заголовок:\t"  + this.getTitle() + "\r\n")
+                .append("Описание:\t"  + this.getDescription() + "\r\n")
+                .append("Дата:\t\t"  + this.getFormatedLastModifiedDate())
+                .toString();
     }
 }

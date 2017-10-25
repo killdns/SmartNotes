@@ -18,6 +18,7 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
+import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import xyz.danshin.smartnotes.R;
@@ -93,7 +94,7 @@ public class NoteEditActivity extends AppCompatActivity {
     /**
      * Экзмепляр заметки
      */
-    private Note note;
+    protected Note note;
 
     /**
      * Переменая, значение которой определяет была ли изменена заметка
@@ -177,7 +178,7 @@ public class NoteEditActivity extends AppCompatActivity {
     }
 
     /**
-     * Обновление текста TitleBar'a, в зависимости от вида взаимодействия с заметкой
+     * Обновление Toolbox'a, в зависимости от вида взаимодействия с заметкой
      */
     protected void updateTitleBar() {
         if (activityType == Enums.NoteActivityType.EDIT)
