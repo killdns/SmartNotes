@@ -79,7 +79,7 @@ public class NoteViewActivity extends NoteEditActivity {
      * Метод, вызываемый при клике на кнопку редактирования
      */
     @Click(R.id.bottom_view_note_view_edit)
-    protected void OnClickEdit() {
+    protected void onClickEdit() {
         ActivityController.startNoteActivityEdit(noteId, adapterPosition);
         setResult(RESULT_CANCELED);
         finish();
@@ -92,6 +92,7 @@ public class NoteViewActivity extends NoteEditActivity {
     void exportNote() {
         ActivityController.startExportDirectoryPicker(this, 1);
     }
+
     /**
      * Метод, вызываемый при экспорте заметок
      */
@@ -101,11 +102,12 @@ public class NoteViewActivity extends NoteEditActivity {
             FileController.exportNote(note, Utils.getSelectedFilesFromResult(data).get(0), this);
         }
     }
+
     /**
      * Метод, вызываемый при клике на кнопку удаления
      */
     @Click(R.id.bottom_view_note_view_remove)
-    protected void OnClickRemove() {
-        super.OnClickRemove();
+    protected void onClickRemove() {
+        super.onClickRemove();
     }
 }

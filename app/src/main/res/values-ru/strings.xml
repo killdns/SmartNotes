@@ -12,6 +12,7 @@
     <string name="export_error">Ошибка экспорта заметок</string>
     <string name="export_success">Выбранные заметки успешно экспортированы</string>
     <string name="export_success_single">Заметка успешно экспортирована</string>
+    <string name="note_save_error">Заголовок или описание заметки не может быть пустым</string>
     <string name="note_title">Заголовок</string>
     <string name="note_description">Описание</string>
     <string name="error">Ошибка</string>

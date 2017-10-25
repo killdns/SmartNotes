@@ -11,6 +11,7 @@
     <string name="export_error">Export error</string>
     <string name="export_success">Selected notes successfully exported</string>
     <string name="export_success_single">Note successfully exported</string>
+    <string name="note_save_error">Note title or description can\'t be empty</string>
     <string name="note_title">Title</string>
     <string name="note_description">Description</string>
     <string name="error">Error</string>
