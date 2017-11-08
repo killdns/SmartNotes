@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorLightGrey">#e6e6e6</color>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303f9f</color>
+    <color name="colorAccent">#ff4081</color>
+    <color name="colorLightGrey">#F4F4F4</color>
+    <color name="colorDarkGrey">#C4C4C4</color>
     <color name="colorTransparentLightGrey">#66e6e6e6</color>
     <color name="delete_red">#a71010</color>
     <color name="edit_orange">#e5b633</color>
+    <color name="priority_dot_menu_white">#FFFFFF</color>
+    <color name="priority_dot_menu_green">#A1D6AE</color>
+    <color name="priority_dot_menu_yellow">#F7D885</color>
+    <color name="priority_dot_menu_red">#F49585</color>
+    <color name="priority_bg_white">#FFFFFF</color>
+    <color name="priority_bg_green">#EFFDEF</color>
+    <color name="priority_bg_yellow">#FFFFEA</color>
+    <color name="priority_bg_red">#FEEEE5</color>
+    <color name="priority_text_white">#000000</color>
+    <color name="priority_text_green">#7BA885</color>
+    <color name="priority_text_yellow">#E7AC4F</color>
+    <color name="priority_text_red">#DB7D6D</color>
 </resources>

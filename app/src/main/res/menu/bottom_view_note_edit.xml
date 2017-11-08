@@ -3,30 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottom_view_note_edit_undo"
-        android:checkable="false"
-        android:icon="@drawable/ic_undo_24dp"
-        android:title="Undo"
-        app:showAsAction="always" />
-    <item
-        android:id="@+id/bottom_view_note_edit_redo"
-        android:checkable="false"
-        android:icon="@drawable/ic_redo_24dp"
-        android:title="Redo"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/bottom_view_note_edit_remove"
         android:checkable="false"
         android:icon="@drawable/ic_recycle_bin_24dp"
         android:title="Remove"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bottom_view_note_view_select_priority"
+        android:icon="@drawable/ic_magic_wand_black_24dp"
+        android:checkable="false"
+        android:title="Set Priority"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bottom_view_note_edit_save"
         android:checkable="false"
         android:icon="@drawable/ic_save_24dp"
         android:title="Save"
         android:visible="true"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 
 </menu>

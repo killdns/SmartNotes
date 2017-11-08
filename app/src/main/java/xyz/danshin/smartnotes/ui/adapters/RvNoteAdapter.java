@@ -1,26 +1,26 @@
-package xyz.danshin.smartnotes.view;
+package xyz.danshin.smartnotes.ui.adapters;
 
-/**
- * Created by Кирилл Даньшин on 13.10.2017.
- */
-
+import android.graphics.drawable.ColorDrawable;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
+import xyz.danshin.smartnotes.Enums;
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.controller.ActivityController;
 import xyz.danshin.smartnotes.entity.Note;
 import xyz.danshin.smartnotes.interfaces.IRvSwipeMenuListener;
+import xyz.danshin.smartnotes.repository.NotePriorityRepository;
 import xyz.danshin.smartnotes.repository.NoteRepository;
 import xyz.danshin.smartnotes.interfaces.IRvSelectedListener;
+import xyz.danshin.smartnotes.ui.commons.NotePriority;
+import xyz.danshin.smartnotes.ui.viewholders.RvViewHolder;
 
 /**
  * Адаптер заметок для recyclerView
@@ -33,6 +33,8 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
      */
     private IRvSelectedListener listener;
 
+
+    private Map<Enums.NotePriority, NotePriority> priorities = NotePriorityRepository.getInstance().getPrioritiesMap();
 
     /**
      * Статус выделения заметок
@@ -77,6 +79,14 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
         viewholder.description.setText(NoteRepository.get(i).getDescription());
         viewholder.date.setText(NoteRepository.get(i).getFormatedLastModifiedDate());
         viewholder.checkbox.setChecked(NoteRepository.get(i).isSelected());
+
+        viewholder.smCv.setBackground(new ColorDrawable(priorities.get(NoteRepository.get(i).getPriority()).getTextColorBackground()));
+        viewholder.title.setTextColor(priorities.get(NoteRepository.get(i).getPriority()).getTextColor());
+        viewholder.description.setTextColor(priorities.get(NoteRepository.get(i).getPriority()).getTextColor());
+        viewholder.date.setTextColor(NoteRepository.get(i).getPriority() == Enums.NotePriority.DEFAULT ?
+                ColorUtils.setAlphaComponent(priorities.get(NoteRepository.get(i).getPriority()).getTextColor(), 127) :
+                priorities.get(NoteRepository.get(i).getPriority()).getTextColor());
+
         viewholder.updateLayout();
     }
 
@@ -148,7 +158,7 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
     }
 
     /**
-     * Пролучение количества заметок количество заметок
+     * Пролучение количества заметок
      *
      * @return Количество заметок
      */
@@ -158,12 +168,12 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
     }
 
     /**
-     * Метод добавления новой заметки в recyclerView
+     * Метод вставки в recyclerView существующей заметки
      *
-     * @param note Экземпляр заметки
+     * @param  adapterPosition Позиция адаптера
      */
-    public void AddItem(Note note) {
-        NoteRepository.add(note);
+    public void insertItem(int adapterPosition) {
+        notifyItemInserted(adapterPosition);
     }
 
 
@@ -178,17 +188,6 @@ public class RvNoteAdapter extends RecyclerView.Adapter<RvViewHolder> implements
             notifyItemRemoved(NoteRepository.getCollection().indexOf(note));
             NoteRepository.remove(note);
         }
-    }
-
-    /**
-     * Удаление заметки по ее Id и позиции адаптера
-     *
-     * @param id              Id заметки
-     * @param adapterPosition Позиция адаптера
-     */
-    public void removeNoteById(int id, int adapterPosition) {
-        NoteRepository.removeById(id);
-        notifyItemRemoved(adapterPosition);
     }
 
     /**

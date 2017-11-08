@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context="xyz.danshin.smartnotes.activity.NoteEditActivity">
+    tools:context="xyz.danshin.smartnotes.ui.activities.NoteEditActivity">
 
     <include layout="@layout/activity_note_frame" />
 

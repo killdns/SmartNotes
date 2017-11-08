@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="18dp"
+    android:divider="?android:dividerHorizontal"
+    android:showDividers="middle"
+    android:layout_marginRight="18dp"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0px" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/dm_priority_top_menu_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dm_priority_top_menu_recycler_view"
+            android:overScrollMode="never"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dialog_menu_export"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/export"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/dialog_menu_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/edit"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/dialog_menu_undo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/undo"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/dialog_menu_redo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/redo"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/dialog_menu_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="16dp"
+        android:paddingTop="16dp"
+        android:text="@string/save"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/dialog_menu_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/delete"
+        android:textColor="@color/dm_textview_disable_enable"
+        android:textSize="16sp" />
+</LinearLayout>
+

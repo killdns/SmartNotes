@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.nononsenseapps.filepicker.FilePickerActivity;
 
-import xyz.danshin.smartnotes.activity.NoteViewActivity_;
-import xyz.danshin.smartnotes.activity.NoteEditActivity_;
+import xyz.danshin.smartnotes.ui.activities.NoteViewActivity_;
+import xyz.danshin.smartnotes.ui.activities.NoteEditActivity_;
 import xyz.danshin.smartnotes.Enums;
 
 /**
- * Класс контроллер для activity
+ * Класс контроллер для activities
  */
 public final class ActivityController {
 

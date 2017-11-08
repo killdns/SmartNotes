@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ImageButton xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dm_priority_top_menu_item_image_button"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    android:padding="16dp"
+    android:background="@android:color/transparent"
+    android:src="@drawable/drawable_dm_dot_white" />
