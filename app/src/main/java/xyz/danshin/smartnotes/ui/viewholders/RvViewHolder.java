@@ -1,7 +1,6 @@
-package xyz.danshin.smartnotes.view;
+package xyz.danshin.smartnotes.ui.viewholders;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -9,12 +8,11 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.tubb.smrv.SwipeHorizontalMenuLayout;
-import com.tubb.smrv.SwipeMenuLayout;
-import com.tubb.smrv.listener.SwipeSwitchListener;
 
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.entity.Note;
 import xyz.danshin.smartnotes.repository.NoteRepository;
+import xyz.danshin.smartnotes.ui.adapters.RvNoteAdapter;
 
 
 /**
@@ -25,41 +23,41 @@ public class RvViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     /**
      * Поле заголовка заметки
      */
-    protected TextView title;
+    public TextView title;
 
     /**
      * Поле описания заметки
      */
-    protected TextView description;
+    public TextView description;
 
     /**
      * Поле даты последнего изменения заметки
      */
-    protected TextView date;
+    public TextView date;
 
     /**
      * Чекбокс выделения заметки
      */
-    protected CheckBox checkbox;
+    public CheckBox checkbox;
 
     /**
      * Layout swipe-меню
      */
-    protected SwipeHorizontalMenuLayout sml;
+    public SwipeHorizontalMenuLayout sml;
 
     /**
      * Layout swipe-меню. Родительский View
      */
-    protected View smCv;
+    public View smCv;
 
     /**
      * View элемента "Edit"
      */
-    protected View btEdit;
+    public View btEdit;
     /**
      * View элемента "Delete"
      */
-    protected View btDelete;
+    public View btDelete;
 
     /**
      * Адаптер
@@ -99,7 +97,7 @@ public class RvViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     /**
      * Прявязка swipe-меню
      */
-    protected void bindSwipeMenu(){
+    public void bindSwipeMenu(){
 
         smCv.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -128,7 +126,7 @@ public class RvViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     /**
      * Обновление Layout, элемента View
      */
-    protected void updateLayout() {
+    public void updateLayout() {
 
         if (description.getText().toString().isEmpty())
             description.setVisibility(View.GONE);
@@ -144,7 +142,7 @@ public class RvViewHolder extends RecyclerView.ViewHolder implements View.OnClic
      */
     @Override
     public void onClick(View v) {
-        if (rvAdapter.selectableStatus)
+        if (rvAdapter.getSelectableStatus())
             checkbox.setChecked(!checkbox.isChecked());
         else
             rvAdapter.onItemClick(NoteRepository.get(getAdapterPosition()), getAdapterPosition());
@@ -177,9 +175,9 @@ public class RvViewHolder extends RecyclerView.ViewHolder implements View.OnClic
     public void setChecked(boolean value) {
         snote.setSelected(value);
         checkbox.setVisibility(value ? View.VISIBLE : View.GONE);
-        if (NoteRepository.getSelectedNotes().size() > 0 && !rvAdapter.selectableStatus)
+        if (NoteRepository.getSelectedNotes().size() > 0 && !rvAdapter.getSelectableStatus())
             rvAdapter.onChangeSelectionMode(true);
-        else if (NoteRepository.getSelectedNotes().size() == 0 && rvAdapter.selectableStatus)
+        else if (NoteRepository.getSelectedNotes().size() == 0 && rvAdapter.getSelectableStatus())
             rvAdapter.onChangeSelectionMode(false);
     }
 

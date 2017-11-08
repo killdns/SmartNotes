@@ -1,4 +1,4 @@
-package xyz.danshin.smartnotes.activity;
+package xyz.danshin.smartnotes.ui.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,17 +25,18 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
+import xyz.danshin.smartnotes.Enums;
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.controller.ActivityController;
 import xyz.danshin.smartnotes.controller.FileController;
 import xyz.danshin.smartnotes.entity.Note;
 import xyz.danshin.smartnotes.repository.NoteRepository;
 import xyz.danshin.smartnotes.interfaces.IRvSelectedListener;
-import xyz.danshin.smartnotes.view.RvAnimator;
-import xyz.danshin.smartnotes.view.RvNoteAdapter;
+import xyz.danshin.smartnotes.ui.commons.RvAnimator;
+import xyz.danshin.smartnotes.ui.adapters.RvNoteAdapter;
 
 /**
- * Главное activity
+ * Главное activities
  */
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity  implements IRvSelectedListener {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
         RecyclerViewLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerview.setLayoutManager(RecyclerViewLayoutManager);
         adapter = new RvNoteAdapter(this);
-        recyclerview.setItemAnimator(new RvAnimator());
+        //recyclerview.setItemAnimator(new RvAnimator());
         recyclerview.setAdapter(adapter);
     }
 
@@ -108,10 +109,9 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
     void onCreateNote(int resultCode, Intent data) {
         if (resultCode != RESULT_OK || data == null) return;
         Bundle bundle = data.getExtras();
-        Note newNote = new Note(bundle.getString("title"), bundle.getString("description"), null);
-        adapter.AddItem(newNote);
+        int index = bundle.getInt("adapterPosition");
+        adapter.insertItem(index);
         ((LinearLayoutManager) recyclerview.getLayoutManager()).scrollToPositionWithOffset(0, 0);
-        adapter.notifyItemInserted(0);
     }
 
     /**
@@ -122,29 +122,17 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
         if (resultCode != RESULT_OK || data == null) return;
         Bundle bundle = data.getExtras();
 
-        int id = bundle.getInt("id");
         int adapterPosition = bundle.getInt("adapterPosition");
 
         if (bundle.getBoolean("remove")) {
-            adapter.removeNoteById(id, adapterPosition);
+            adapter.notifyItemRemoved(adapterPosition);
             return;
         }
 
-        Note note = NoteRepository.getNoteById(id);
-        if (note == null)
-            throw new NullPointerException("note is null");
-        note.setTitle(bundle.getString("title"));
-        note.setDescription(bundle.getString("description"));
-        note.setLastModifiedDate(null);
-
-        try {
-            NoteRepository.relocate(note);
-        } catch (Exception e) {
-            // empty
-        }
-        ((LinearLayoutManager) recyclerview.getLayoutManager()).scrollToPositionWithOffset(0, 0);
+        int newAdapterPosition = bundle.getInt("newAdapterPosition");
         adapter.notifyItemChanged(adapterPosition);
-        adapter.notifyItemMoved(adapterPosition, 0);
+        adapter.notifyItemMoved(adapterPosition, newAdapterPosition);
+        ((LinearLayoutManager) recyclerview.getLayoutManager()).scrollToPositionWithOffset(newAdapterPosition, 0);
     }
 
     /**
@@ -183,7 +171,6 @@ public class MainActivity extends AppCompatActivity  implements IRvSelectedListe
 
     /**
      * Метод, вызываемый при изменении режима выделения
-     *
      * @param status Статус режима выделения
      */
     @Override

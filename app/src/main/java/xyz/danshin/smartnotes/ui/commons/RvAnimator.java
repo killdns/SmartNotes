@@ -1,4 +1,4 @@
-package xyz.danshin.smartnotes.view;
+package xyz.danshin.smartnotes.ui.commons;
 
 
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;

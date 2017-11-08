@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "xyz.danshin.smartnotes"
         minSdkVersion 16
@@ -54,10 +53,13 @@ dependencies {
 
     //File Picker
     compile 'com.nononsenseapps:filepicker:4.1.0'
+
+    //Dialog plus
+    compile 'com.github.Daniil-Pavenko:dialogplus:1.19'
 }
 
 // add annotation processing options to jack
-android.applicationVariants.all { variant ->
+android.applicationVariants.all { variant ->7
     variant.variantData.variantConfiguration.javaCompileOptions.annotationProcessorOptions
             .arguments = ['androidManifestFile': variant.outputs[0]?.processResources?.manifestFile?.absolutePath]
 }

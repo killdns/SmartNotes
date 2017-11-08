@@ -1,4 +1,4 @@
-package xyz.danshin.smartnotes.activity;
+package xyz.danshin.smartnotes.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,6 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OnActivityResult;
-import org.androidannotations.annotations.OptionsItem;
-import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 import xyz.danshin.smartnotes.Enums;
@@ -21,10 +19,9 @@ import xyz.danshin.smartnotes.controller.ActivityController;
 import xyz.danshin.smartnotes.controller.FileController;
 
 /**
- * "Обрезанное" Activity просмотра заметок заметок
+ * "Обрезанное" Activity просмотра заметок
  */
 @EActivity
-@OptionsMenu(R.menu.menu_note_view)
 public class NoteViewActivity extends NoteEditActivity {
     /**
      * Кнопка редактирования заметки
@@ -76,6 +73,43 @@ public class NoteViewActivity extends NoteEditActivity {
     }
 
     /**
+     * Привязка setOnClickListener'ов в элементам меню
+     */
+    @Override
+    protected void bindDialogMenuItemClick()
+    {
+        super.bindDialogMenuItemClick();
+
+        // Пункт "Экспорт"
+        dialogMenu.findViewById(R.id.dialog_menu_export).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogMenu.dismiss();
+                ActivityController.startExportDirectoryPicker(NoteViewActivity.this, 1);
+            }
+        });
+
+        // Пункт "Изменить"
+        dialogMenu.findViewById(R.id.dialog_menu_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogMenu.dismiss();
+                onClickEdit();
+            }
+        });
+    }
+
+    /**
+     * Обновление Toolbox'a, в зависимости от вида взаимодействия с заметкой
+     */
+    @Override
+    protected void updateDialogMenu() {
+        dialogMenu.findViewById(R.id.dialog_menu_save).setVisibility(View.GONE);
+        dialogMenu.findViewById(R.id.dialog_menu_undo).setVisibility(View.GONE);
+        dialogMenu.findViewById(R.id.dialog_menu_redo).setVisibility(View.GONE);
+        dialogMenu.findViewById(R.id.dm_priority_top_menu_layout).setVisibility(View.GONE);
+    }
+    /**
      * Метод, вызываемый при клике на кнопку редактирования
      */
     @Click(R.id.bottom_view_note_view_edit)
@@ -86,14 +120,6 @@ public class NoteViewActivity extends NoteEditActivity {
     }
 
     /**
-     * Метод, обеспечивающий работу кнопки "Экспорт" в меню
-     */
-    @OptionsItem(R.id.menu_item_note_export)
-    void exportNote() {
-        ActivityController.startExportDirectoryPicker(this, 1);
-    }
-
-    /**
      * Метод, вызываемый при экспорте заметок
      */
     @OnActivityResult(1)
@@ -101,13 +127,5 @@ public class NoteViewActivity extends NoteEditActivity {
         if (resultCode == RESULT_OK) {
             FileController.exportNote(note, Utils.getSelectedFilesFromResult(data).get(0), this);
         }
-    }
-
-    /**
-     * Метод, вызываемый при клике на кнопку удаления
-     */
-    @Click(R.id.bottom_view_note_view_remove)
-    protected void onClickRemove() {
-        super.onClickRemove();
     }
 }

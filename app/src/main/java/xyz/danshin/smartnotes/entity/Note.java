@@ -5,6 +5,7 @@ import android.text.format.DateFormat;
 import java.io.Serializable;
 import java.util.Date;
 
+import xyz.danshin.smartnotes.Enums;
 import xyz.danshin.smartnotes.repository.NoteRepository;
 
 /**
@@ -26,6 +27,11 @@ public class Note implements Serializable, Comparable<Note> {
      * Описание заметки
      */
     protected String description;
+
+    /**
+     * Приоритет заметки
+     */
+    protected Enums.NotePriority priority;
 
     /**
      * Дата последнего изменения заметки
@@ -52,67 +58,78 @@ public class Note implements Serializable, Comparable<Note> {
     {
         this.id = NoteRepository.getNextId();
         this.title = title;
+        this.priority = Enums.NotePriority.DEFAULT;
         this.description = desc;
         this.lastModifiedDate = date == null ? new Date() : date;
     }
 
     /**
      * Геттер для Id заметки
-     * @return
+     * @return Id заметки
      */
     public int getId() { return this.id; }
 
     /**
      * Сеттер для Id заметки
-     * @return
      */
     public void setId(int id) { this.id = id; }
 
     /**
      * Геттер для заголовка заметки
-     * @return
+     * @return Заголовок заметки
      */
     public String getTitle() { return this.title; }
 
     /**
      * Сеттер для заголовка заметки
-     * @return
      */
     public void setTitle(String title) { this.title = title; }
 
     /**
      * Геттер для описания заметки
-     * @return
+     * @return Описание заметки
      */
     public String getDescription() { return this.description; }
 
     /**
      * Сеттер для описания заметки
-     * @return
      */
     public void setDescription(String description) { this.description = description; }
 
     /**
+     * Геттер для приоритета заметки
+     * @return Приоритет заметки
+     */
+    public Enums.NotePriority getPriority() {
+        return priority;
+    }
+
+    /**
+     * Сеттер для приоритета заметки
+     */
+    public void setPriority(Enums.NotePriority priority) {
+        this.priority = priority;
+    }
+    /**
      * Геттер для даты последненго изменения заметки
-     * @return
+     * @return Дата последнего изменения
      */
     public Date getLastModifiedDate() { return this.lastModifiedDate; }
 
     /**
      * Геттер для даты последненго изменения заметки в читабельном виде
-     * @return
+     * @return Дата последнего изменения в читабельном виде
      */
     public String getFormatedLastModifiedDate() { return dateFormat.format("dd MMMM yyyy, HH:mm:ss", this.lastModifiedDate).toString(); }
 
     /**
      * Сеттер для даты последненго изменения заметки
-     * @return
      */
     public void setLastModifiedDate(Date lastModifiedDate) { this.lastModifiedDate = lastModifiedDate == null ? new Date() : lastModifiedDate; }
 
     /**
      * Геттер для состояния выделения заметки
-     * @return
+     * @return Состояние выделения заметки
      */
     public boolean isSelected() {
         return isSelected;
@@ -120,7 +137,6 @@ public class Note implements Serializable, Comparable<Note> {
 
     /**
      * Сеттер для состояния выделения заметки
-     * @return
      */
     public void setSelected(boolean selected) {
         isSelected = selected;
@@ -153,7 +169,13 @@ public class Note implements Serializable, Comparable<Note> {
     @Override
     public int compareTo(Note note)
     {
-        //Обратная сортировка по времени
+        //Обратная сортировка по времени и приоритету
+        Enums.NotePriority p1, p2;
+        p1 = note.getPriority();
+        p2 = this.getPriority();
+        if (p1.compareTo(p2) < 0)
+            return  p1.compareTo(p2);
+
         Date n1, n2;
         n1 = note.getLastModifiedDate();
         n2 = this.getLastModifiedDate();

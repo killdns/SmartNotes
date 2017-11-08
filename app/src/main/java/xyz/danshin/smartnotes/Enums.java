@@ -19,6 +19,17 @@ public final class Enums {
      */
     public enum NoteTempData {
         TITLE,
-        DESCRIPTION
+        DESCRIPTION,
+        PRIORITY
+    }
+
+    /**
+     * Пречисление с приоритетами заметок
+     */
+    public enum NotePriority {
+        DEFAULT,
+        GREEN,
+        YELLOW,
+        RED
     }
 }

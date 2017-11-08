@@ -16,6 +16,8 @@
     <string name="note_title">Заголовок</string>
     <string name="note_description">Описание</string>
     <string name="error">Ошибка</string>
+    <string name="undo">Отменить</string>
+    <string name="redo">Повторить</string>
     <string name="save">Сохранить</string>
     <string name="edit">Изменить</string>
     <string name="delete">Удалить</string>
@@ -23,4 +25,8 @@
     <string name="export2">Экспорт</string>
     <string name="yes">Да</string>
     <string name="no">Отмена</string>
+    <string name="priority_default">По умолчанию</string>
+    <string name="priority_green">Зеленый</string>
+    <string name="priority_yellow">Желтый</string>
+    <string name="priority_red">Красный</string>
 </resources>

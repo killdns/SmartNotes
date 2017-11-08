@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import xyz.danshin.smartnotes.entity.Note;
 
 /**
- * Created by Кирилл Даньшин on 17.10.2017.
- */
-
-/**
  * Интерфейс для обработки выделения и кликов на элементах в recyclerView
  */
 public interface IRvSelectedListener {

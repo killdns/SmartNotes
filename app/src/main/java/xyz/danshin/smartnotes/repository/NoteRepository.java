@@ -1,5 +1,6 @@
 package xyz.danshin.smartnotes.repository;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -70,7 +71,17 @@ public class NoteRepository {
      */
     public static void add(Note note)
     {
-        notesList.add(0, note);
+        add(0, note);
+    }
+
+    /**
+     * Добавляет экзмпляр заметки в коллекцию по индексу
+     * @param index Индекс в коллекции
+     * @param note Экзмпляр заметки
+     */
+    public static void add(int index, Note note)
+    {
+        notesList.add(index, note);
     }
 
     /**
@@ -101,15 +112,34 @@ public class NoteRepository {
      * Меняет индекс экземпляра в списке на самый верхний
      * @param note Экзмпляр заметки
      * @throws Exception Ошибка нахождения экземпляра в коллекции
+     * @return Индекс вставленного элемента
      */
-    public static void relocate(Note note) throws Exception
+    public static int relocateToUp(Note note) throws Exception
     {
         if (notesList.indexOf(note) < 0)
             throw new Exception("Note not included in the collection");
-
         remove(note);
-        add(note);
+        int index = getUpIndex(note);
+        add(index, note);
+        return index;
     }
+
+    /**
+     * Получает верхний индекс вставки в зависимости от приоритета
+     */
+    public static int getUpIndex(Note note)
+    {
+        int index = 0;
+
+        for (int i = 0; i < notesList.size(); i++)
+            if (notesList.get(i).compareTo(note) > 0) {
+                index = i;
+                break;
+            }
+
+        return index;
+    }
+
     /**
      * Удаление всех выделенных заметок
      */
@@ -120,6 +150,7 @@ public class NoteRepository {
                 notesList.remove(note);
         }
     }
+
     /**
      * Очистка выделения
      */

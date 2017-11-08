@@ -1,4 +1,4 @@
-package xyz.danshin.smartnotes.view;
+package xyz.danshin.smartnotes.ui.decorators;
 
 import android.content.Context;
 import android.graphics.Canvas;
