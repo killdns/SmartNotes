@@ -9,6 +9,12 @@
         android:title="Remove"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/bottom_view_note_edit_add_image"
+        android:icon="@drawable/ic_add_image_black_24dp"
+        android:checkable="false"
+        android:title="Add Image"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/bottom_view_note_view_select_priority"
         android:icon="@drawable/ic_magic_wand_black_24dp"
         android:checkable="false"

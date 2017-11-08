@@ -56,6 +56,13 @@ dependencies {
 
     //Dialog plus
     compile 'com.github.Daniil-Pavenko:dialogplus:1.19'
+
+    //Image picker
+    compile 'com.github.Mariovc:ImagePicker:1.2.0'
+
+    //Rich editor
+    compile 'jp.wasabeef:richeditor-android:1.2.2'
+
 }
 
 // add annotation processing options to jack

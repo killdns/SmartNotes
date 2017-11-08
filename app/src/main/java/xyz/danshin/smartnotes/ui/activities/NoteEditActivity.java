@@ -3,7 +3,9 @@ package xyz.danshin.smartnotes.ui.activities;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.v7.app.AlertDialog;
@@ -12,13 +14,20 @@ import android.support.v7.view.menu.ActionMenuItemView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.mvc.imagepicker.ImagePicker;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.OnDismissListener;
 import com.orhanobut.dialogplus.ViewHolder;
@@ -30,6 +39,9 @@ import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.OptionsItem;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import xyz.danshin.smartnotes.R;
 import xyz.danshin.smartnotes.repository.NotePriorityRepository;
@@ -424,6 +436,14 @@ public class NoteEditActivity extends AppCompatActivity implements IRvPriorityCl
     }
 
     /**
+     * Метод, вызываемый при клике на кнопку добавления изображения
+     */
+    @Click(R.id.bottom_view_note_edit_add_image)
+    public void onClickAddImage() {
+        ImagePicker.pickImage(this, "Select your image:");
+    }
+
+    /**
      * Метод, вызываемый при клике на кнопку сохранения
      */
     @Click(R.id.bottom_view_note_edit_save)
@@ -610,5 +630,13 @@ public class NoteEditActivity extends AppCompatActivity implements IRvPriorityCl
         rvPriorityDMAdapter = new RvPriorityDMAdapter(this);
         rvPriorityDMAdapter.setActivePriority(notePriority);
         rv.setAdapter(rvPriorityDMAdapter);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Bitmap bitmap = ImagePicker.getImageFromResult(this, requestCode, resultCode, data);
+        if (bitmap != null) {
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
